@@ -1,15 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Greeting = styled.h2``;
-const Logo = styled.h1``;
+const TitleWrapper = styled.div`
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+const Greeting = styled.h2`
+  font-size: ${props => props.theme.greeting};
+`;
+
+const Logo = styled.h1`
+  font-size: ${props => props.theme.mainTitle};
+`;
 
 const MainTitle = () => {
   return (
-    <div>
+    <TitleWrapper>
       <Greeting>Welcome to</Greeting>
       <Logo>Bright Goals</Logo>
-    </div>
+    </TitleWrapper>
   );
 };
 

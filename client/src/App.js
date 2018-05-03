@@ -8,7 +8,14 @@ import LogIn from './components/LogIn/LogIn';
 
 import light from './themes/light';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  background-color: ${props => props.theme.wrapperBg};
+  font-family: ${p => p.theme.fontFamily};
+`;
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -26,11 +33,13 @@ const App = () => {
     <ThemeProvider theme={light}>
       <Router>
         <Wrapper>
-          <Switch>
-            <ProtectedRoute exact path="/" component={Goals} />
-            <Route path="/login" component={LogIn} />
-            <Route path="/signup" component={SignUp} />
-          </Switch>
+          <div>
+            <Switch>
+              <ProtectedRoute exact path="/" component={Goals} />
+              <Route path="/login" component={LogIn} />
+              <Route path="/signup" component={SignUp} />
+            </Switch>
+          </div>
         </Wrapper>
       </Router>
     </ThemeProvider>
