@@ -6,9 +6,9 @@ const HintComponent = styled.div`
   font-size: 12px;
 `;
 
-const Hint = ({ children }) => {
+const Hint = ({ hint }) => {
   return (
-    <HintComponent>{ children }</HintComponent>
+    <HintComponent>{ hint }</HintComponent>
   );
 };
 
