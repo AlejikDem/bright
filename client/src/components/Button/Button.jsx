@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const ButtonComponent = styled.button`
   padding: 10px 15px;
-  font-size: 18px;
-  border-radius: 10%;
+  font-size: ${p => p.size === 'middle' ? 18 : 14}px;
+  border-radius: 12px;
   cursor: pointer;
   border: none;
   background-color: ${p => p.theme[p.color]};
@@ -15,7 +15,7 @@ const ButtonComponent = styled.button`
   }
 `;
 
-const Button = ({ text, onClick, color, size }) => {
+const Button = ({ children, onClick, color, size }) => {
   return (
     <ButtonComponent
       type="button"
@@ -23,7 +23,7 @@ const Button = ({ text, onClick, color, size }) => {
       size={size}
       onClick={onClick}
     >
-      {text}
+      {children}
     </ButtonComponent>
   );
 };

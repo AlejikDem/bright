@@ -41,11 +41,12 @@ const SignForm = ({ title, logIn, hint, buttonText, onSubmit }) => {
       </InputWrapper>
       <FormBottom>
         <Button
-          text={buttonText}
           size="middle"
           color="success"
           onClick={onSubmit}
-        />
+        >
+          {buttonText}
+        </Button>
       </FormBottom>
     </Form>
   );
