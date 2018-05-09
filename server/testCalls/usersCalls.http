@@ -1,13 +1,23 @@
-GET http://localhost:8080/users
+@baseUrl = http://localhost:8080
+@userId = 5af2e83f6dd9dd1834f50131
+
+@token = putTokenHere
 
 ###
 
-GET http://localhost:8080/users/5af2e83f6dd9dd1834f50131
+GET {{baseUrl}}/users
+x-access-token: {{token}}
 
 ###
 
-POST http://localhost:8080/users
+GET {{baseUrl}}/users/{{userId}}
+x-access-token: {{token}}
+
+###
+
+POST {{baseUrl}}/users
 content-type: application/json
+x-access-token: {{token}}
 
 {
   "user": {
@@ -19,8 +29,9 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:8080/users/5af2e83f6dd9dd1834f50131
+PUT {{baseUrl}}/users/{{userId}}
 content-type: application/json
+x-access-token: {{token}}
 
 {
   "user": {
@@ -30,4 +41,5 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:8080/users/5af2e83f6dd9dd1834f50131
+DELETE {{baseUrl}}/users/{{userId}}
+x-access-token: {{token}}
