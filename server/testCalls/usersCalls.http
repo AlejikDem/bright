@@ -1,0 +1,33 @@
+GET http://localhost:8080/users
+
+###
+
+GET http://localhost:8080/users/5af2e83f6dd9dd1834f50131
+
+###
+
+POST http://localhost:8080/users
+content-type: application/json
+
+{
+  "user": {
+    "name": "tester",
+    "email": "tester1@gmail.com",
+    "password": "helloWorld"
+  }
+}
+
+###
+
+PUT http://localhost:8080/users/5af2e83f6dd9dd1834f50131
+content-type: application/json
+
+{
+  "user": {
+    "name": "tester8"
+  }
+}
+
+###
+
+DELETE http://localhost:8080/users/5af2e83f6dd9dd1834f50131
