@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const  { verifyToken } = require('../utils');
 
 const {
   getUsers,
@@ -13,11 +14,11 @@ const { loginUser, signUpUser } = require('./auth');
 const router = Router();
 
 router
-  .get('/users', getUsers)
-  .get('/users/:id', getUserById)
-  .post('/users', createUser)
-  .put('/users/:id', updateUser)
-  .delete('/users/:id', deleteUser)
+  .get('/users', verifyToken, getUsers)
+  .get('/users/:id', verifyToken, getUserById)
+  .post('/users', verifyToken, createUser)
+  .put('/users/:id', verifyToken, updateUser)
+  .delete('/users/:id', verifyToken, deleteUser)
 
   .post('/login', loginUser)
   .post('/signup', signUpUser);
