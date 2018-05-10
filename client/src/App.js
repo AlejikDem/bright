@@ -1,13 +1,8 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
-import configureStore from './store';
-
-import Goals from './components/Goals/Goals';
-import SignUp from './components/SignUp/SignUp';
-import LogIn from './components/LogIn/LogIn';
+import routes from './routes';
 
 import light from './themes/light';
 
@@ -37,21 +32,21 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 const App = () => {
   return (
-    <Provider store={configureStore()}>
-      <ThemeProvider theme={themes['light']}>
-        <Router>
-          <Wrapper>
-            <div>
-              <Switch>
-                <ProtectedRoute exact path="/" component={Goals} />
-                <Route path="/login" component={LogIn} />
-                <Route path="/signup" component={SignUp} />
-              </Switch>
-            </div>
-          </Wrapper>
-        </Router>
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={themes['light']}>
+      <Router>
+        <Wrapper>
+          <div>
+            <Switch>
+              {routes.map(route => (
+                route.protected
+                  ? <ProtectedRoute {...route} key={route.path} />
+                  : <Route {...route} key={route.path} />
+              ))}
+            </Switch>
+          </div>
+        </Wrapper>
+      </Router>
+    </ThemeProvider>
   );
 };
 
