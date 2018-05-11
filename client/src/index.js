@@ -8,7 +8,7 @@ import './reset.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import configureStore from './store';
+import configureStore from './helpers/store';
 
 ReactDOM.render(
   <Provider store={configureStore()}>

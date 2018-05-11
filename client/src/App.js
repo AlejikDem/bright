@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-import routes from './routes';
+import routes from './helpers/routes';
 
 import light from './themes/light';
 

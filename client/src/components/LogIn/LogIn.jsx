@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import MainTitle from '../MainTitle/MainTitle';
-import SignForm from '../SignForm/SignForm';
+import SignFormContainer from '../SignForm/SignFormContainer';
 
 const LogInHint = () => {
   return (
@@ -17,13 +17,7 @@ const LogIn = () => {
   return (
     <React.Fragment>
       <MainTitle />
-      <SignForm
-        title="Please Log In"
-        hint={<LogInHint />}
-        logIn
-        buttonText="Log In"
-        onSubmit={() => console.log('Log in')}
-      />
+      <SignFormContainer hint={<LogInHint />} logIn />
     </React.Fragment>
   );
 };

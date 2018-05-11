@@ -1,6 +1,6 @@
-import Goals from './components/Goals/Goals';
-import SignUp from './components/SignUp/SignUp';
-import LogIn from './components/LogIn/LogIn';
+import Goals from '../components/Goals/Goals';
+import SignUp from '../components/SignUp/SignUp';
+import LogIn from '../components/LogIn/LogIn';
 
 const routes = [
   {

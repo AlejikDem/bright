@@ -23,29 +23,52 @@ const InputWrapper = styled.div`
   margin-bottom: 10px;
 `;
 
-const SignForm = ({ title, logIn, hint, buttonText, onSubmit }) => {
+const SignForm = ({
+  inputs,
+  onInputChange,
+  logIn,
+  hint,
+  startLogin,
+  startSignUp
+}) => {
   return (
     <Form>
-      <Title>{title}</Title>
+      <Title>Please {logIn ? 'Log In' : 'Sign Up'}</Title>
       <div style={{ marginBottom: '15px' }} >
         <Hint hint={hint} />
       </div>
       {!logIn && <InputWrapper>
-        <TextInput placeholder="name" />
+        <TextInput
+          placeholder="name"
+          value={inputs.name}
+          onChange={e => onInputChange('name', e.target.value)}
+        />
       </InputWrapper>}
       <InputWrapper>
-        <TextInput placeholder="email" />
+        <TextInput
+          placeholder="email"
+          value={inputs.email}
+          onChange={e => onInputChange('email', e.target.value)}
+        />
       </InputWrapper>
       <InputWrapper>
-        <TextInput placeholder="password" />
+        <TextInput
+          placeholder="password"
+          value={inputs.password}
+          onChange={e => onInputChange('password', e.target.value)}
+        />
       </InputWrapper>
       <FormBottom>
         <Button
           size="middle"
           color="success"
-          onClick={onSubmit}
+          onClick={
+            logIn
+              ? startLogin.bind(null, inputs)
+              : startSignUp.bind(null, inputs)
+          }
         >
-          {buttonText}
+          {logIn ? 'Log In' : 'Sign Up'}
         </Button>
       </FormBottom>
     </Form>

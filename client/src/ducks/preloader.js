@@ -5,17 +5,12 @@ export const setPreloader = bool => ({
   payload: bool
 });
 
-export const initialState = {
-  preloader: false
-};
+export const initialState = false;
 
 export default function preloader(state = initialState, { type, payload }){
   switch(type) {
     case SET_PRELOADER:
-      return {
-        ...state,
-        preloader: payload
-      };
+      return payload;
     default:
       return state;
   }
