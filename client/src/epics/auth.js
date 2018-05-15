@@ -1,4 +1,5 @@
-import { START_SIGNUP, START_LOGIN, setUser } from '../ducks/user';
+import { START_SIGNUP, START_LOGIN, START_INIT, finishInit } from '../ducks/auth';
+import { setUser } from '../ducks/user';
 import { setPreloader } from '../ducks/preloader';
 import { addError, hideError } from '../ducks/errors';
 
@@ -42,6 +43,15 @@ export function logInEpic(action$, _, { post, storage }) {
           loginRequest(post, creds, storage)
         )
       )
+    );
+}
+
+export function onInitEpic(action$, _, { getJSON, storage }) {
+  return action$
+    .ofType(START_INIT)
+    .pipe(
+      delay(2000),
+      map(() => finishInit())
     );
 }
 

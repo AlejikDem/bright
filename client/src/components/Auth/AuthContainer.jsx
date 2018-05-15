@@ -1,7 +1,7 @@
 import { withStateHandlers, lifecycle, compose } from 'recompose';
 import { connect } from 'react-redux';
 
-import { startSignUp, startLogin } from '../../ducks/user';
+import { startSignUp, startLogin } from '../../ducks/auth';
 
 import Auth from './Auth';
 
@@ -33,7 +33,12 @@ const onInputChange = state => (name, value) => ({
 
 const toggleMode = state => () => ({
   ...state,
-  isLogInForm: !state.isLogInForm
+  isLogInForm: !state.isLogInForm,
+  inputs: {
+    name: '',
+    email: '',
+    password: ''
+  }
 });
 
 const enhance = compose(

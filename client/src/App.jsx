@@ -30,12 +30,12 @@ const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   )} />
 );
 
-const App = ({ isLoggedIn }) => {
+const App = ({ isLoggedIn, isInitiated }) => {
   return (
     <ThemeProvider theme={themes['light']}>
       <Router>
         <Wrapper>
-          {/* {!isLoggedIn && ( */}
+          {isInitiated && (
             <div>
               <Switch>
                 {routes.map(route => (
@@ -45,7 +45,7 @@ const App = ({ isLoggedIn }) => {
                 ))}
               </Switch>
             </div>
-          {/* )} */}
+          )}
         </Wrapper>
       </Router>
     </ThemeProvider>
