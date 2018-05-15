@@ -24,7 +24,7 @@ const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
     isLoggedIn
       ? <Component {...props} />
       : <Redirect to={{
-          pathname: '/login',
+          pathname: '/auth',
           state: { from: props.location }
         }} />
   )} />
@@ -35,7 +35,7 @@ const App = ({ isLoggedIn }) => {
     <ThemeProvider theme={themes['light']}>
       <Router>
         <Wrapper>
-          {!isLoggedIn && (
+          {/* {!isLoggedIn && ( */}
             <div>
               <Switch>
                 {routes.map(route => (
@@ -45,7 +45,7 @@ const App = ({ isLoggedIn }) => {
                 ))}
               </Switch>
             </div>
-          )}
+          {/* )} */}
         </Wrapper>
       </Router>
     </ThemeProvider>

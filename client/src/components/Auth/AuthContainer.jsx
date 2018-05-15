@@ -1,10 +1,9 @@
 import { withStateHandlers, lifecycle, compose } from 'recompose';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import { startSignUp, startLogin } from '../../ducks/user';
 
-import SignForm from './SignForm';
+import Auth from './Auth';
 
 const mapState = ({ user }) => ({
   isLoggedIn: user.isLoggedIn
@@ -16,6 +15,7 @@ const mapActions = {
 };
 
 const state = {
+  isLogInForm: true,
   inputs: {
     name: '',
     email: 'signupper@gmail.com',
@@ -31,8 +31,12 @@ const onInputChange = state => (name, value) => ({
   }
 });
 
+const toggleMode = state => () => ({
+  ...state,
+  isLogInForm: !state.isLogInForm
+});
+
 const enhance = compose(
-  withRouter,
   connect(mapState, mapActions),
   lifecycle({
     componentWillReceiveProps({ isLoggedIn, history }) {
@@ -42,9 +46,10 @@ const enhance = compose(
   withStateHandlers(
     state,
     {
-      onInputChange
+      onInputChange,
+      toggleMode
     }
   )
 );
 
-export default enhance(SignForm);
+export default enhance(Auth);

@@ -1,6 +1,5 @@
 import Goals from '../components/Goals/Goals';
-import SignUp from '../components/SignUp/SignUp';
-import LogIn from '../components/LogIn/LogIn';
+import AuthContainer from '../components/Auth/AuthContainer';
 
 const routes = [
   {
@@ -10,16 +9,10 @@ const routes = [
     component: Goals
   },
   {
-    path: '/login',
+    path: '/auth',
     exact: false,
     protected: false,
-    component: LogIn
-  },
-  {
-    path: '/signup',
-    exact: false,
-    protected: false,
-    component: SignUp
+    component: AuthContainer
   }
 ];
 
