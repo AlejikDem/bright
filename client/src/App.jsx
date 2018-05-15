@@ -35,15 +35,17 @@ const App = ({ isLoggedIn }) => {
     <ThemeProvider theme={themes['light']}>
       <Router>
         <Wrapper>
-          <div>
-            <Switch>
-              {routes.map(route => (
-                route.protected
-                  ? <ProtectedRoute {...route} key={route.path} isLoggedIn={isLoggedIn} />
-                  : <Route {...route} key={route.path} />
-              ))}
-            </Switch>
-          </div>
+          {!isLoggedIn && (
+            <div>
+              <Switch>
+                {routes.map(route => (
+                  route.protected
+                    ? <ProtectedRoute {...route} key={route.path} isLoggedIn={isLoggedIn} />
+                    : <Route {...route} key={route.path} />
+                ))}
+              </Switch>
+            </div>
+          )}
         </Wrapper>
       </Router>
     </ThemeProvider>
