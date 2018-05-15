@@ -26,18 +26,18 @@ const InputWrapper = styled.div`
 const SignForm = ({
   inputs,
   onInputChange,
-  logIn,
+  islogInForm,
   hint,
   startLogin,
   startSignUp
 }) => {
   return (
     <Form>
-      <Title>Please {logIn ? 'Log In' : 'Sign Up'}</Title>
+      <Title>Please {islogInForm ? 'Log In' : 'Sign Up'}</Title>
       <div style={{ marginBottom: '15px' }} >
         <Hint hint={hint} />
       </div>
-      {!logIn && <InputWrapper>
+      {!islogInForm && <InputWrapper>
         <TextInput
           placeholder="name"
           value={inputs.name}
@@ -63,12 +63,12 @@ const SignForm = ({
           size="middle"
           color="success"
           onClick={
-            logIn
+            islogInForm
               ? startLogin.bind(null, inputs)
               : startSignUp.bind(null, inputs)
           }
         >
-          {logIn ? 'Log In' : 'Sign Up'}
+          {islogInForm ? 'Log In' : 'Sign Up'}
         </Button>
       </FormBottom>
     </Form>

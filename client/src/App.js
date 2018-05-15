@@ -19,9 +19,9 @@ const Wrapper = styled.div`
   font-family: ${p => p.theme.fontFamily};
 `;
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
+const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route {...rest} render={props => (
-    false === true
+    isLoggedIn
       ? <Component {...props} />
       : <Redirect to={{
           pathname: '/login',
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
   )} />
 );
 
-const App = () => {
+const App = ({ isLoggedIn }) => {
   return (
     <ThemeProvider theme={themes['light']}>
       <Router>
@@ -39,7 +39,7 @@ const App = () => {
             <Switch>
               {routes.map(route => (
                 route.protected
-                  ? <ProtectedRoute {...route} key={route.path} />
+                  ? <ProtectedRoute {...route} key={route.path} isLoggedIn={isLoggedIn} />
                   : <Route {...route} key={route.path} />
               ))}
             </Switch>

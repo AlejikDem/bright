@@ -17,7 +17,7 @@ const LogIn = () => {
   return (
     <React.Fragment>
       <MainTitle />
-      <SignFormContainer hint={<LogInHint />} logIn />
+      <SignFormContainer hint={<LogInHint />} islogInForm />
     </React.Fragment>
   );
 };

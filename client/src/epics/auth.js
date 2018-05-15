@@ -8,11 +8,14 @@ import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
 import { map, catchError, mergeMap, delay } from 'rxjs/operators';
 
-const loginSuccess = ({ response }) =>
-  merge(
+const loginSuccess = ({ response }, storage) => {
+  storage.setItem('token', response.token);
+
+  return merge(
     of(setPreloader(false)),
     of(setUser(response.user))
   );
+};
 
 const signError = error => 
   merge(
@@ -21,14 +24,14 @@ const signError = error =>
     of(hideError('login')).pipe(delay(3000))
   );
 
-const loginRequest = (post, {email, password}) =>
+const loginRequest = (post, {email, password}, storage) =>
   post(loginUrl, { email, password})
     .pipe(
-      mergeMap(loginSuccess),
+      mergeMap(res => loginSuccess(res, storage)),
       catchError(signError)
     );
 
-export function logInEpic(action$, _, { post }) {
+export function logInEpic(action$, _, { post, storage }) {
   return action$
     .ofType(START_LOGIN)
     .pipe(
@@ -36,7 +39,7 @@ export function logInEpic(action$, _, { post }) {
       mergeMap(creds =>
         merge(
           of(setPreloader(true)),
-          loginRequest(post, creds)
+          loginRequest(post, creds, storage)
         )
       )
     );

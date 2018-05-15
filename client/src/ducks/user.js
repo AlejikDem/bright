@@ -18,7 +18,8 @@ export const startSignUp = info => ({
 });
 
 const initialState = {
-  user: {}
+  user: {},
+  isLoggedIn: false,
 };
 
 export default function user (state = initialState, { type, payload }) {
@@ -26,7 +27,8 @@ export default function user (state = initialState, { type, payload }) {
     case SET_USER:
       return {
         ...state,
-        user: payload
+        user: payload,
+        isLoggedIn: true
       };
     default: 
       return state;

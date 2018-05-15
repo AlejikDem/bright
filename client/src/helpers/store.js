@@ -7,6 +7,7 @@ import rootEpic from '../epics/root';
 
 const epicMiddleware = createEpicMiddleware(rootEpic, {
   dependencies: {
+    storage: window.localStorage,
     getJSON: ajax.getJSON,
     post: ajax.post
   }
