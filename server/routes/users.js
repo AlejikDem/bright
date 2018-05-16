@@ -23,6 +23,18 @@ const getUserById = async (req, res) => {
   } catch (e) { errorHandler(e, res); }
 };
 
+const getActiveUser = async (req, res) => {
+  const userId = req.userId;
+  try {
+    const user = await User.findById(userId);
+
+    res.send({
+      success: true,
+      user
+    });
+  } catch (e) { errorHandler(e, res); }
+};
+
 const createUser = async (req, res) => {
   try {
     const user = await User.create([req.body.user]);
@@ -57,6 +69,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getUsers,
   getUserById,
+  getActiveUser,
   createUser,
   updateUser,
   deleteUser

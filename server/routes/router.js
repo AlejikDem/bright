@@ -4,6 +4,7 @@ const  { verifyToken } = require('../utils');
 const {
   getUsers,
   getUserById,
+  getActiveUser,
   createUser,
   updateUser,
   deleteUser
@@ -15,6 +16,7 @@ const router = Router();
 
 router
   .get('/users', verifyToken, getUsers)
+  .get('/users/activeUser', verifyToken, getActiveUser)
   .get('/users/:id', verifyToken, getUserById)
   .post('/users', verifyToken, createUser)
   .put('/users/:id', verifyToken, updateUser)

@@ -19,6 +19,7 @@ const verifyToken = async (req, res, next) => {
     const decoded = await jwt.verify(token, process.env.SECRET);
     if(!decoded) throw new Error('Failed to authenticate token.');
 
+    req.userId = decoded.id;
     next();
   } catch (e) { errorHandler(e, res); }
 };
