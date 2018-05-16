@@ -1,12 +1,12 @@
 import { merge, of } from 'rxjs';
-import { catchError, mergeMap, delay } from 'rxjs/operators';
+import { catchError, mergeMap } from 'rxjs/operators';
 
 import { START_INIT, finishInit } from '../ducks/auth';
 import { setUser } from '../ducks/user';
 import { setPreloader } from '../ducks/preloader';
-import { addError, hideError } from '../ducks/errors';
 
 import { getActiveUser } from '../helpers/api';
+import { errorStream } from '../helpers/streams';
 
 export function onInitEpic(action$, _, { getJSON, storage, fetch }) {
   const token = storage.getItem('token');
@@ -19,23 +19,15 @@ export function onInitEpic(action$, _, { getJSON, storage, fetch }) {
         return getActiveUser(getJSON, token)
           .pipe(
             mergeMap(initSuccess),
-            catchError(initError)
+            catchError(e => errorStream(e, 'init'))
           );
       }),
     );
 }
 
-const initError = error =>
+const initSuccess = res =>
   merge(
-    of(setPreloader(false)),
-    of(addError('init', error)),
-    of(hideError('init')).pipe(delay(3000))
-  );
-
-const initSuccess = (res) => {
-  return merge(
     of(setPreloader(false)),
     of(setUser(res.user)),
     of(finishInit())
   );
-};
