@@ -1,13 +1,12 @@
-import { START_SIGNUP, START_LOGIN, START_INIT, finishInit } from '../ducks/auth';
+import { merge, of } from 'rxjs';
+import { map, catchError, mergeMap, delay } from 'rxjs/operators';
+
+import { START_SIGNUP, START_LOGIN } from '../ducks/auth';
 import { setUser } from '../ducks/user';
 import { setPreloader } from '../ducks/preloader';
 import { addError, hideError } from '../ducks/errors';
 
-import { loginUrl } from '../helpers/api';
-
-import { merge } from 'rxjs/observable/merge';
-import { of } from 'rxjs/observable/of';
-import { map, catchError, mergeMap, delay } from 'rxjs/operators';
+import { loginCall } from '../helpers/api';
 
 const loginSuccess = ({ response }, storage) => {
   storage.setItem('token', response.token);
@@ -25,8 +24,8 @@ const signError = error =>
     of(hideError('login')).pipe(delay(3000))
   );
 
-const loginRequest = (post, {email, password}, storage) =>
-  post(loginUrl, { email, password})
+const loginRequest = (post, creds, storage) =>
+  loginCall(post, creds)
     .pipe(
       mergeMap(res => loginSuccess(res, storage)),
       catchError(signError)
@@ -43,15 +42,6 @@ export function logInEpic(action$, _, { post, storage }) {
           loginRequest(post, creds, storage)
         )
       )
-    );
-}
-
-export function onInitEpic(action$, _, { getJSON, storage }) {
-  return action$
-    .ofType(START_INIT)
-    .pipe(
-      delay(2000),
-      map(() => finishInit())
     );
 }
 
