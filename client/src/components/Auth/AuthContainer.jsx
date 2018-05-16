@@ -44,6 +44,10 @@ const toggleMode = state => () => ({
 const enhance = compose(
   connect(mapState, mapActions),
   lifecycle({
+    componentDidMount(){
+      const { isLoggedIn, history } = this.props;
+      if (isLoggedIn) history.replace('/');
+    },
     componentWillReceiveProps({ isLoggedIn, history }) {
       if (isLoggedIn) history.push('/');
     }
