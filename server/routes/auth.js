@@ -4,8 +4,10 @@ const User = require('../models/User');
 const { errorHandler, createToken } = require('../utils');
 
 const signUpUser = async (req, res) => {
+  const info = JSON.parse(req.body.info);
+
   try {
-    const user = await User.create([req.body.user]);
+    const user = await User.create(info);
     const token = await createToken(user._id);
 
     res.send({

@@ -5,10 +5,10 @@ import { START_SIGNUP, START_LOGIN } from '../ducks/auth';
 import { setUser } from '../ducks/user';
 import { setPreloader } from '../ducks/preloader';
 
-import { loginCall } from '../helpers/api';
+import { loginCall, signUpCall } from '../helpers/api';
 import { errorStream } from '../helpers/streams';
 
-const loginSuccess = ({ response }, storage) => {
+const authSuccess = ({ response }, storage) => {
   storage.setItem('token', response.token);
 
   return merge(
@@ -20,8 +20,8 @@ const loginSuccess = ({ response }, storage) => {
 const loginRequest = (post, creds, storage) =>
   loginCall(post, creds)
     .pipe(
-      mergeMap(res => loginSuccess(res, storage)),
-      catchError(e => errorStream(e, 'login'))
+      mergeMap(res => authSuccess(res, storage)),
+      catchError(e => errorStream(e, 'auth'))
     );
 
 export function logInEpic(action$, _, { post, storage }) {
@@ -38,8 +38,23 @@ export function logInEpic(action$, _, { post, storage }) {
     );
 }
 
-export function signUpEpic(action$) {
+const signUpRequest = (post, info, storage) =>
+  signUpCall(post, info)
+    .pipe(
+      mergeMap(res => authSuccess(res, storage)),
+      catchError(e => errorStream(e, 'auth'))
+    );
+
+export function signUpEpic(action$, _, { post, storage }) {
   return action$
     .ofType(START_SIGNUP)
-    .map(res => console.log(res));
+    .pipe(
+      map(action => action.payload),
+      mergeMap(info =>
+        merge(
+          of(setPreloader(true)),
+          signUpRequest(post, info, storage)
+        )
+      )
+    );
 }
