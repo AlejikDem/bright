@@ -5,3 +5,8 @@ html, body, #root {
 html * {
   box-sizing: border-box;
 }
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}
