@@ -57,7 +57,7 @@ const AuthComponent = ({
   startSignUp
 }) => {
   return (
-    <React.Fragment>
+    <div>
       <MainTitle />
       <Form>
         <Title>Please {isLogInForm ? 'Log In' : 'Sign Up'}</Title>
@@ -103,7 +103,7 @@ const AuthComponent = ({
           </Button>
         </FormBottom>
       </Form>
-    </React.Fragment>
+    </div>
   );
 };
 

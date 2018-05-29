@@ -6,6 +6,7 @@ export default {
   wrapperBg: '#fff',
   bg1: '#b5cd18',
   bg2: '#a5663f',
+  darkBg: '#ccc',
 
   primaryText: '#1b1c1d',
   lightText: '#767676',

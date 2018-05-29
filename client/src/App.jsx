@@ -36,15 +36,13 @@ const App = ({ isLoggedIn, isInitiated }) => {
       <Router>
         <Wrapper>
           {isInitiated && (
-            <div>
-              <Switch>
-                {routes.map(route => (
-                  route.protected
-                    ? <ProtectedRoute {...route} key={route.path} isLoggedIn={isLoggedIn} />
-                    : <Route {...route} key={route.path} />
-                ))}
-              </Switch>
-            </div>
+            <Switch>
+              {routes.map(route => (
+                route.protected
+                  ? <ProtectedRoute {...route} key={route.path} isLoggedIn={isLoggedIn} />
+                  : <Route {...route} key={route.path} />
+              ))}
+            </Switch>
           )}
         </Wrapper>
       </Router>
