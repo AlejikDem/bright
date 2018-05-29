@@ -27,11 +27,11 @@ const LogOut = styled(FontAwesomeIcon)`
   cursor: pointer;
 `;
 
-const UserMenu = (props) => {
+const UserMenu = ({ onSignOut }) => {
   return (
     <Wrapper>
       <Avatar avatar={avatar} />
-      <LogOut icon="sign-out-alt" size="2x" />
+      <LogOut icon="sign-out-alt" size="2x" onClick={onSignOut.bind(null)} />
     </Wrapper>
   );
 };

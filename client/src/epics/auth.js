@@ -1,7 +1,7 @@
 import { merge, of } from 'rxjs';
 import { map, catchError, mergeMap } from 'rxjs/operators';
 
-import { START_SIGNUP, START_LOGIN } from '../ducks/auth';
+import { START_SIGNUP, START_LOGIN, setLoggedIn } from '../ducks/auth';
 import { setUser } from '../ducks/user';
 import { setPreloader } from '../ducks/preloader';
 
@@ -13,7 +13,8 @@ const authSuccess = ({ response }, storage) => {
 
   return merge(
     of(setPreloader(false)),
-    of(setUser(response.user))
+    of(setUser(response.user)),
+    of(setLoggedIn(true))
   );
 };
 

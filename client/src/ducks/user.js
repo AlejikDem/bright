@@ -1,18 +1,12 @@
 export const SET_USER = 'SET_USER';
-export const SIGN_OUT = 'SIGN_OUT';
 
 export const setUser = user => ({
   type: SET_USER,
   payload: user
 });
 
-export const signOut = () => ({
-  type: SIGN_OUT
-});
-
 const initialState = {
-  user: {},
-  isLoggedIn: false,
+  user: {}
 };
 
 export default function user (state = initialState, { type, payload }) {
@@ -20,14 +14,7 @@ export default function user (state = initialState, { type, payload }) {
     case SET_USER:
       return {
         ...state,
-        user: payload,
-        isLoggedIn: true
-      };
-    case SIGN_OUT:
-      return {
-        ...state,
-        user: {},
-        isLoggedIn: false
+        user: payload
       };
     default: 
       return state;
