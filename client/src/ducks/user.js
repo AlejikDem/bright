@@ -6,8 +6,7 @@ export const setUser = user => ({
 });
 
 const initialState = {
-  user: {},
-  isLoggedIn: false,
+  user: {}
 };
 
 export default function user (state = initialState, { type, payload }) {
@@ -15,8 +14,7 @@ export default function user (state = initialState, { type, payload }) {
     case SET_USER:
       return {
         ...state,
-        user: payload,
-        isLoggedIn: true
+        user: payload
       };
     default: 
       return state;

@@ -5,8 +5,8 @@ import { startInit } from './ducks/auth';
 
 import App from './App';
 
-const mapState = ({ user, auth }) => ({
-  isLoggedIn: user.isLoggedIn,
+const mapState = ({ auth }) => ({
+  isLoggedIn: auth.isLoggedIn,
   isInitiated: auth.isInitiated
 });
 

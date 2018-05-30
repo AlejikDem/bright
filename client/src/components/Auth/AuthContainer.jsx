@@ -5,8 +5,8 @@ import { startSignUp, startLogin } from '../../ducks/auth';
 
 import Auth from './Auth';
 
-const mapState = ({ user }) => ({
-  isLoggedIn: user.isLoggedIn
+const mapState = ({ auth }) => ({
+  isLoggedIn: auth.isLoggedIn
 });
 
 const mapActions = {

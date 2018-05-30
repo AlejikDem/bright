@@ -1,7 +1,7 @@
 import { merge, of } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 
-import { START_INIT, finishInit } from '../ducks/auth';
+import { START_INIT, finishInit, setLoggedIn } from '../ducks/auth';
 import { setUser } from '../ducks/user';
 import { setPreloader } from '../ducks/preloader';
 
@@ -29,5 +29,6 @@ const initSuccess = res =>
   merge(
     of(setPreloader(false)),
     of(setUser(res.user)),
+    of(setLoggedIn(true)),
     of(finishInit())
   );
