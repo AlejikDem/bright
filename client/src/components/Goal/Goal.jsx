@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const fst = require('../../assets/images/pug1.jpg');
 const scd = require('../../assets/images/tower.jpg');
@@ -42,9 +43,15 @@ const Goal = ({ goal }) => {
     <Wrapper>
       <Cover style={{backgroundImage: `url(${goal.cover === 'pug1' ? fst : scd})`}} />
       <Title>{goal.title}</Title>
-      <InfoBox color="warn">S</InfoBox>
-      <InfoBox color="info">A</InfoBox>
-      <InfoBox color="danger">P</InfoBox>
+      <InfoBox color="warn">
+        <FontAwesomeIcon icon="list-ol"/>
+      </InfoBox>
+      <InfoBox color="info">
+        <FontAwesomeIcon icon="lightbulb"/>
+      </InfoBox>
+      <InfoBox color="danger">
+      <FontAwesomeIcon icon="gem"/>
+      </InfoBox>
     </Wrapper>
   );
 };

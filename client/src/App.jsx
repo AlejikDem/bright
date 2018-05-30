@@ -3,15 +3,24 @@ import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import fontawesome from '@fortawesome/fontawesome';
 import brands from '@fortawesome/fontawesome-free-brands';
-import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt';
 
+import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt';
+import faLightbulb from '@fortawesome/fontawesome-free-solid/faLightbulb';
+import faGem from '@fortawesome/fontawesome-free-solid/faGem';
+import faListOl from '@fortawesome/fontawesome-free-solid/faListOl';
 
 import routes from './helpers/routes';
 import light from './themes/light';
 
 import UserMenuContainer from './components/UserMenu/UserMenuContainer';
 
-fontawesome.library.add(brands, faSignOutAlt);
+fontawesome.library.add(
+  brands,
+  faSignOutAlt,
+  faLightbulb,
+  faGem,
+  faListOl
+);
 
 const themes = {
   light
