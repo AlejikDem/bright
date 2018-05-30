@@ -59,11 +59,11 @@ const App = ({ isLoggedIn, isInitiated }) => {
     <ThemeProvider theme={themes['light']}>
       <Router>
         <Wrapper>
-          <Header>
+          {isLoggedIn && (<Header>
             <HeaderInner>
               <UserMenuContainer />
             </HeaderInner>
-          </Header>
+          </Header>)}
           {isInitiated && (
             <Switch>
               {routes.map(route => (
