@@ -1,3 +1,7 @@
+const setDefaultHeaders = token => ({
+  'x-access-token': token
+});
+
 const BASE_URL = 'http://localhost:8080';
 const USERS_URL = `${BASE_URL}/users`;
 const LOGIN_URL = `${BASE_URL}/login`;
@@ -12,6 +16,4 @@ export const signUpCall = (post, info) =>
   });
 
 export const getActiveUser = (getJSON, token) =>
-  getJSON(`${USERS_URL}/activeUser`, {
-    'x-access-token': token
-  });
+  getJSON(`${USERS_URL}/activeUser`, setDefaultHeaders(token));
